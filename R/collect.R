@@ -10,7 +10,13 @@ collect_blocks <- function(pkgdir) {
       info <- object_info(raw_block$call)
 
       name <- tag_value(parsed$tags, "name")
-      if (is.null(name)) name <- info$name
+      if (is.null(name)) {
+        name <- if (identical(info$name, "_PACKAGE")) {
+          paste0(pkg_name(pkgdir), "-package")
+        } else {
+          info$name
+        }
+      }
 
       blocks[[length(blocks) + 1]] <- list(
         name = name,

@@ -14,6 +14,13 @@ deparse1 <- function(x) {
 object_info <- function(call) {
   no_info <- list(name = NA_character_, is_function = FALSE, usage = NA_character_)
 
+  # "_PACKAGE" is a bare string literal, not a call: it's roxygen2's
+  # sentinel for package-level documentation. Flag it with a dedicated
+  # name so collect_blocks() can resolve it to "<pkgname>-package".
+  if (is.character(call) && length(call) == 1 && identical(call, "_PACKAGE")) {
+    return(list(name = "_PACKAGE", is_function = FALSE, usage = NA_character_))
+  }
+
   if (!is.call(call)) {
     return(no_info)
   }

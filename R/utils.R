@@ -18,6 +18,11 @@ pkg_man_dir <- function(pkgdir) {
   man_dir
 }
 
+# Package name from DESCRIPTION, used to name the "_PACKAGE" doc topic.
+pkg_name <- function(pkgdir) {
+  read.dcf(file.path(pkgdir, "DESCRIPTION"), fields = "Package")[1, 1]
+}
+
 # trim leading/trailing whitespace
 str_trim <- function(x) {
   gsub("^[ \t]+|[ \t]+$", "", x)
