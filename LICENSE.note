@@ -1,0 +1,22 @@
+tinyroxygen as a whole is distributed under the Apache License 2.0 (see
+LICENSE.txt).
+
+It bundles a trimmed-down, vendored copy of the CommonMark reference
+implementation 'cmark' (https://github.com/commonmark/cmark), used to
+implement Markdown support (@md tag) for Rd generation. Only the
+core CommonMark parser and node-tree/AST files are included (no HTML/XML/
+LaTeX/man renderers, no GFM extensions, no command-line tool); see
+src/cmark/ and scripts/cmark.sh for exactly what is vendored and how to
+re-vendor it.
+
+cmark is Copyright (c) 2014, John MacFarlane, distributed under the
+2-clause BSD license. Parts of it (houdini.h, houdini_href_e.c,
+houdini_html_e.c, houdini_html_u.c) derive from
+https://github.com/vmg/houdini, Copyright (C) 2012 Vicent Martí,
+distributed under the MIT license. The full upstream license text is
+vendored unmodified at src/cmark/COPYING.
+
+src/cmark/cmark_export.h and src/cmark/cmark_version.h are not upstream
+cmark files - they stand in for headers cmark's CMake build normally
+generates. They are regenerated automatically by scripts/cmark.sh on
+every re-vendor (see that script).

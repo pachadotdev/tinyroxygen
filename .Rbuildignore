@@ -1,0 +1,5 @@
+^\.Renviron$
+^\.github$
+^\.vscode$
+^LICENSE\.txt$
+^scripts$

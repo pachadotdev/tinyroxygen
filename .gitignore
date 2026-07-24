@@ -1,0 +1,11 @@
+*.o
+*.so
+*.dll
+*.rds
+src/*.o
+src/*.so
+src/*.dll
+src/cmark/*.o
+.Rhistory
+.RData
+.Rproj.user/
