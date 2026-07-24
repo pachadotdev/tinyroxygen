@@ -21,17 +21,10 @@ namespace_roclet_build <- function(blocks) {
     }
 
     if (tag_present(b$tags, "exportS3Method")) {
-      val <- str_trim(tag_value(b$tags, "exportS3Method"))
-      if (nzchar(val)) {
-        parts <- strsplit(val, "[ \t]+")[[1]]
-        generic <- parts[1]
-        class <- if (length(parts) > 1) parts[2] else NA_character_
-      } else {
-        parts <- strsplit(b$name, "\\.", fixed = FALSE)[[1]]
-        generic <- parts[1]
-        class <- paste(parts[-1], collapse = ".")
-      }
-      if (nzchar(generic) && nzchar(class)) {
+      parts <- s3_method_parts(tag_value(b$tags, "exportS3Method"), b$name)
+      generic <- parts$generic
+      class <- parts$class
+      if (nzchar(generic) && !is.na(class) && nzchar(class)) {
         s3methods <- c(s3methods, sprintf("S3method(%s, %s)", generic, class))
       }
     }

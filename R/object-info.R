@@ -12,13 +12,13 @@ deparse1 <- function(x) {
 }
 
 object_info <- function(call) {
-  no_info <- list(name = NA_character_, is_function = FALSE, usage = NA_character_)
+  no_info <- list(name = NA_character_, is_function = FALSE, usage = NA_character_, arg_names = character())
 
   # "_PACKAGE" is a bare string literal, not a call: it's roxygen2's
   # sentinel for package-level documentation. Flag it with a dedicated
   # name so collect_blocks() can resolve it to "<pkgname>-package".
   if (is.character(call) && length(call) == 1 && identical(call, "_PACKAGE")) {
-    return(list(name = "_PACKAGE", is_function = FALSE, usage = NA_character_))
+    return(list(name = "_PACKAGE", is_function = FALSE, usage = NA_character_, arg_names = character()))
   }
 
   if (!is.call(call)) {
@@ -49,17 +49,39 @@ object_info <- function(call) {
           paste0(nm, " = ", deparse1(formals_pl[[i]]))
         }
       }, character(1))
-      usage <- paste0(name, "(", paste(arg_strs, collapse = ", "), ")")
-      return(list(name = name, is_function = TRUE, usage = usage))
+      usage <- format_usage(name, arg_strs)
+      return(list(name = name, is_function = TRUE, usage = usage, arg_names = arg_names[nzchar(arg_names)]))
     }
 
-    return(list(name = name, is_function = FALSE, usage = name))
+    return(list(name = name, is_function = FALSE, usage = name, arg_names = character()))
   }
 
   # best-effort: setClass("Foo", ...), setGeneric("foo", ...), etc.
   if (is.symbol(head_sym) && length(call) >= 2 && is.character(call[[2]])) {
-    return(list(name = call[[2]], is_function = FALSE, usage = NA_character_))
+    return(list(name = call[[2]], is_function = FALSE, usage = NA_character_, arg_names = character()))
   }
 
   no_info
 }
+
+# Build a \usage{} line for a function call, e.g. "name(x, y = 1)". R CMD
+# check's "Rd line widths" check flags \usage lines wider than 90
+# characters, so once the one-line form would exceed that, fall back to
+# one argument per line (matching the source's own multi-line style):
+#   name(
+#     x,
+#     y = 1
+#   )
+# The \method{}{} rewrite for S3 methods (see roclet-rd.R's
+# s3_method_usage()) only ever replaces the leading "name(" prefix, so it
+# works unchanged on either form.
+usage_width_limit <- 90
+
+format_usage <- function(name, arg_strs) {
+  one_line <- paste0(name, "(", paste(arg_strs, collapse = ", "), ")")
+  if (length(arg_strs) == 0 || nchar(one_line) <= usage_width_limit) {
+    return(one_line)
+  }
+  paste0(name, "(\n  ", paste(arg_strs, collapse = ",\n  "), "\n)")
+}
+

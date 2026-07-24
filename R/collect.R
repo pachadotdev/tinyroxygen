@@ -22,6 +22,7 @@ collect_blocks <- function(pkgdir) {
         name = name,
         is_function = info$is_function,
         usage = info$usage,
+        arg_names = info$arg_names,
         intro = parsed$intro,
         tags = parsed$tags,
         file = raw_block$file,

@@ -16,6 +16,25 @@ rd_block <- function(tag, body) {
   c(sprintf("\\%s{", tag), body, "}", "")
 }
 
+# S3 methods must be shown in \usage{} with \method{generic}{class}(...)
+# markup instead of their full dotted name (CRAN's Rd checks reject the
+# full name). Only applies to blocks tagged @exportS3Method; other
+# functions keep their plain "name(args)" usage as-is.
+s3_method_usage <- function(b) {
+  if (!tag_present(b$tags, "exportS3Method")) {
+    return(b$usage)
+  }
+  parts <- s3_method_parts(tag_value(b$tags, "exportS3Method"), b$name)
+  if (is.na(parts$class) || !nzchar(parts$class)) {
+    return(b$usage)
+  }
+  prefix <- paste0(b$name, "(")
+  if (!startsWith(b$usage, prefix)) {
+    return(b$usage)
+  }
+  paste0(sprintf("\\method{%s}{%s}", parts$generic, parts$class), substring(b$usage, nchar(b$name) + 1))
+}
+
 # Build the \description / \details from a block's intro text (paragraphs
 # separated by blank lines) unless overridden by explicit @description /
 # @details tags.
@@ -115,7 +134,7 @@ build_topic_rd <- function(topic_key, blocks, param_index = list(), family_index
     if (!is.null(usage_tag)) {
       usages <- c(usages, usage_tag)
     } else if (isTRUE(b$is_function) && !is.na(b$usage)) {
-      usages <- c(usages, b$usage)
+      usages <- c(usages, s3_method_usage(b))
     }
 
     for (p in tags_named(b$tags, "param")) {
@@ -163,6 +182,19 @@ build_topic_rd <- function(topic_key, blocks, param_index = list(), family_index
         }
       }
     }
+  }
+
+  # Drop any documented argument that isn't an actual formal of one of the
+  # functions in this topic. Without this, @inheritParams (which copies
+  # every param from the source topic, e.g. a family-grouped @rdname with
+  # params only some of its functions use) can leave params in
+  # \arguments{} that never appear in \usage{}, which R CMD check flags as
+  # "Documented arguments not in \usage". Only applied when the topic has
+  # at least one function block to check against, so purely non-function
+  # topics (e.g. datasets) are left untouched.
+  valid_args <- unique(unlist(lapply(blocks, function(b) b$arg_names)))
+  if (length(valid_args) > 0) {
+    arguments <- arguments[names(arguments) %in% valid_args]
   }
 
   # Render seealso_txt (possibly markdown) before appending the @family

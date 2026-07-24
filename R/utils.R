@@ -46,3 +46,22 @@ split_paragraphs <- function(lines) {
 die <- function(...) {
   stop(sprintf(...), call. = FALSE)
 }
+
+# Parse an @exportS3Method tag's value (e.g. "print event_loop") into
+# generic/class parts. When the tag has no value, falls back to splitting
+# the block's own dotted name (e.g. "print.event_loop") on the first dot.
+# Shared by the namespace roclet (for S3method() entries) and the Rd
+# roclet (for \method{}{} usage markup), so both stay in sync.
+s3_method_parts <- function(tag_val, block_name) {
+  tag_val <- str_trim(if (is.null(tag_val)) "" else tag_val)
+  if (nzchar(tag_val)) {
+    parts <- strsplit(tag_val, "[ \t]+")[[1]]
+    generic <- parts[1]
+    class <- if (length(parts) > 1) parts[2] else NA_character_
+  } else {
+    parts <- strsplit(block_name, "\\.", fixed = FALSE)[[1]]
+    generic <- parts[1]
+    class <- paste(parts[-1], collapse = ".")
+  }
+  list(generic = generic, class = class)
+}
