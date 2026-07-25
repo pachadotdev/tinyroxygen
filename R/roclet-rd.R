@@ -9,6 +9,19 @@ escape_rd_percent <- function(x) {
   gsub("(?<!\\\\)%", "\\\\%", x, perl = TRUE)
 }
 
+# @examples content is raw R code, written into \examples{} without any
+# markdown/Rd-macro rendering. But \examples{} is still parsed by Rd, so a
+# literal backslash must be doubled (otherwise e.g. "\\s" in a regex is
+# read back as the invalid escape "\s") and a literal % must be escaped
+# (otherwise Rd treats it as a comment and silently drops the rest of the
+# line, e.g. in `x %in% y` or `5 %% 2`). Backslashes are escaped first so
+# the backslash introduced by percent-escaping isn't doubled again.
+escape_rd_examples <- function(x) {
+  if (is.null(x)) return(x)
+  x <- gsub("\\\\", "\\\\\\\\", x, fixed = TRUE)
+  gsub("%", "\\\\%", x, fixed = TRUE)
+}
+
 rd_block <- function(tag, body) {
   if (is.null(body) || !nzchar(str_trim(paste(body, collapse = "")))) {
     return(character())
@@ -248,7 +261,7 @@ build_topic_rd <- function(topic_key, blocks, param_index = list(), family_index
     rd_block("description", render_text(description)),
     if (nzchar(details)) rd_block("details", render_text(details)),
     if (!is.null(seealso_txt)) rd_block("seealso", seealso_txt),
-    if (length(examples) > 0) rd_block("examples", paste(examples, collapse = "\n\n")),
+    if (length(examples) > 0) rd_block("examples", escape_rd_examples(paste(examples, collapse = "\n\n"))),
     if (length(keywords) > 0) sprintf("\\keyword{%s}", keywords)
   )
 
