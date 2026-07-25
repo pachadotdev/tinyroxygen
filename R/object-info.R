@@ -14,11 +14,19 @@ deparse1 <- function(x) {
 object_info <- function(call) {
   no_info <- list(name = NA_character_, is_function = FALSE, usage = NA_character_, arg_names = character())
 
-  # "_PACKAGE" is a bare string literal, not a call: it's roxygen2's
+  # "_PACKAGE" is a bare string literal, not a call: it's Roxygen's
   # sentinel for package-level documentation. Flag it with a dedicated
   # name so collect_blocks() can resolve it to "<pkgname>-package".
   if (is.character(call) && length(call) == 1 && identical(call, "_PACKAGE")) {
     return(list(name = "_PACKAGE", is_function = FALSE, usage = NA_character_, arg_names = character()))
+  }
+
+  # Any other bare string literal is Roxygen's convention for documenting
+  # a data object that has no assignment expression of its own (e.g. a
+  # dataset loaded from data/, documented with a trailing `"objname"`).
+  # The string itself is the object's name.
+  if (is.character(call) && length(call) == 1) {
+    return(list(name = call, is_function = FALSE, usage = NA_character_, arg_names = character()))
   }
 
   if (!is.call(call)) {
