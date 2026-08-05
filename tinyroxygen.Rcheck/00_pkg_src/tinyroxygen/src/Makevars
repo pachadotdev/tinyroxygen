@@ -1,0 +1,19 @@
+CMARK_SOURCES = \
+	cmark/blocks.c \
+	cmark/buffer.c \
+	cmark/cmark.c \
+	cmark/cmark_ctype.c \
+	cmark/houdini_href_e.c \
+	cmark/houdini_html_e.c \
+	cmark/houdini_html_u.c \
+	cmark/inlines.c \
+	cmark/iterator.c \
+	cmark/node.c \
+	cmark/references.c \
+	cmark/scanners.c \
+	cmark/utf8.c
+
+SOURCES = marshal.c init.c cmark_html_stub.c $(CMARK_SOURCES)
+OBJECTS = $(SOURCES:.c=.o)
+
+PKG_CPPFLAGS = -I./cmark

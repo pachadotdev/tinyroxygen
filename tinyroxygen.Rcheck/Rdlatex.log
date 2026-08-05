@@ -1,0 +1,111 @@
+Hmm ... looks like a package
+Converting parsed Rd's to LaTeX 
+Creating pdf output from LaTeX ...
+
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(./Rd2.tex
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/home/pacha/.TinyTeX/texmf-local/tex/latex/Rd.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/url/url.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/eucal.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/times.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def (/home/pacha/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file Rd2.aux.
+(/home/pacha/.TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd)
+No file Rd2.toc.
+[1{/home/pacha/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/pacha/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2]
+No file Rd2.ind.
+[3] (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 72043 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
+Sorting entries....done (13 comparisons).
+Generating output file Rd2.ind....done (20 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(./Rd2.tex
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/home/pacha/.TinyTeX/texmf-local/tex/latex/Rd.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/url/url.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/eucal.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/times.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def (/home/pacha/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux) (/home/pacha/.TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.out) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.out) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.toc) [1{/home/pacha/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/pacha/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.ind [3] [4]) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</home/pacha/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (4 pages, 88572 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
+Sorting entries....done (13 comparisons).
+Generating output file Rd2.ind....done (20 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(./Rd2.tex
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/home/pacha/.TinyTeX/texmf-local/tex/latex/Rd.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/url/url.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/eucal.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/times.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def (/home/pacha/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux) (/home/pacha/.TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.out) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.out) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.toc) [1{/home/pacha/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/pacha/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.ind [3] [4]) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux) )</home/pacha/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (4 pages, 90544 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
+Sorting entries....done (13 comparisons).
+Generating output file Rd2.ind....done (20 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(./Rd2.tex
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo)) (/home/pacha/.TinyTeX/texmf-local/tex/latex/Rd.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/url/url.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/eucal.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/times.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty (/home/pacha/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def (/home/pacha/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/home/pacha/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux) (/home/pacha/.TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.out) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.out) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/psnfss/t1pcr.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd) (/home/pacha/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.toc) [1{/home/pacha/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/pacha/.TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.ind [3] [4]) (/tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5/Rd2.aux) )</home/pacha/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/pacha/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (4 pages, 90555 bytes).
+Transcript written on Rd2.log.
+Saving output to ‘tinyroxygen-manual.pdf’ ...
+Done
+You may want to clean up by 'rm -Rf /tmp/RtmpnJ4ynz/Rd2pdf539e5202e4f5'

@@ -1,0 +1,33 @@
+* installing *source* package ‘tinyroxygen’ ...
+** this is package ‘tinyroxygen’ version ‘0.1’
+** using staged installation
+** libs
+using C compiler: ‘gcc (GCC) 16.1.1 20260625’
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c marshal.c -o marshal.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c init.c -o init.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark_html_stub.c -o cmark_html_stub.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/blocks.c -o cmark/blocks.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/buffer.c -o cmark/buffer.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/cmark.c -o cmark/cmark.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/cmark_ctype.c -o cmark/cmark_ctype.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/houdini_href_e.c -o cmark/houdini_href_e.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/houdini_html_e.c -o cmark/houdini_html_e.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/houdini_html_u.c -o cmark/houdini_html_u.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/inlines.c -o cmark/inlines.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/iterator.c -o cmark/iterator.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/node.c -o cmark/node.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/references.c -o cmark/references.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/scanners.c -o cmark/scanners.o
+gcc -I"/usr/include/R/" -DNDEBUG -I./cmark  -I/usr/local/include    -fpic  -Wall -O3 -pedantic -c cmark/utf8.c -o cmark/utf8.o
+gcc -shared -L/usr/lib64/R/lib -Wl,-O1 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-z,pack-relative-relocs -flto=auto -o tinyroxygen.so marshal.o init.o cmark_html_stub.o cmark/blocks.o cmark/buffer.o cmark/cmark.o cmark/cmark_ctype.o cmark/houdini_href_e.o cmark/houdini_html_e.o cmark/houdini_html_u.o cmark/inlines.o cmark/iterator.o cmark/node.o cmark/references.o cmark/scanners.o cmark/utf8.o -L/usr/lib64/R/lib -lR
+installing to /home/pacha/Documents/tinyroxygen/tinyroxygen.Rcheck/00LOCK-tinyroxygen/00new/tinyroxygen/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tinyroxygen)

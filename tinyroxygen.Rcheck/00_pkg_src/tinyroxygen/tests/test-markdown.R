@@ -1,0 +1,128 @@
+library(tinyroxygen)
+source("helper/pkg.R")
+
+# markdown_to_rd() converts a small, deliberate subset of Markdown to Rd
+# markup: emphasis, strong, code spans, links, code blocks, and lists
+stopifnot(identical(tinyroxygen:::markdown_to_rd("plain text"), "plain text"))
+stopifnot(identical(tinyroxygen:::markdown_to_rd("*em* and **strong**"), "\\emph{em} and \\strong{strong}"))
+stopifnot(identical(tinyroxygen:::markdown_to_rd("`code()`"), "\\code{code()}"))
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd("see [there](https://example.com)"),
+  "see \\href{https://example.com}{there}"
+))
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd(c("- one", "- two")),
+  "\\itemize{\n\\item one\n\\item two\n}"
+))
+
+# Rd metacharacters in plain text are escaped, same as non-markdown text
+stopifnot(identical(tinyroxygen:::markdown_to_rd("100% \\{x\\}"), "100\\% \\{x\\}"))
+
+# roxygen2-style topic autolinks: [fun()], [obj], [`obj`], [pkg::fun()], and
+# [text][ref] all resolve to \link{}/\link[]{}, without needing a real URL
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd("see [multiply()] instead"),
+  "see \\code{\\link[=multiply]{multiply()}} instead"
+))
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd("see [multiply]"),
+  "see \\link{multiply}"
+))
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd("see [`multiply`]"),
+  "see \\code{\\link{multiply}}"
+))
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd("see [pkg::multiply()]"),
+  "see \\code{\\link[pkg:multiply]{pkg::multiply()}}"
+))
+stopifnot(identical(
+  tinyroxygen:::markdown_to_rd("see [this function][multiply()]"),
+  "see \\link[=multiply]{this function}"
+))
+
+# without @md, markdown-looking syntax is left as literal text (only % is
+# escaped), matching tinyroxygen's default plain-text/Rd-markup behaviour
+pkgdir <- make_test_pkg(a.R = c(
+  "#' A",
+  "#'",
+  "#' Uses *stars* for emphasis, literally.",
+  "a <- function() {}"
+))
+roxygenise(pkgdir)
+rd_a <- read_rd(pkgdir, "a")
+stopifnot(identical(rd_section(rd_a, "description"), "Uses *stars* for emphasis, literally."))
+
+# with @md, description/details/params/return/seealso are converted from
+# Markdown to Rd
+pkgdir <- make_test_pkg(a.R = c(
+  "#' A",
+  "#'",
+  "#' Uses *stars* for `emphasis`.",
+  "#'",
+  "#' More details with **strong** text.",
+  "#' @md",
+  "#' @param x A [linked](https://example.com) parameter.",
+  "#' @return A **bold** value.",
+  "a <- function(x) {}"
+))
+roxygenise(pkgdir)
+rd_a <- read_rd(pkgdir, "a")
+stopifnot(identical(rd_section(rd_a, "description"), "Uses \\emph{stars} for \\code{emphasis}."))
+stopifnot(identical(rd_section(rd_a, "details"), "More details with \\strong{strong} text."))
+stopifnot(identical(
+  rd_section(rd_a, "arguments"),
+  "\\item{x}{A \\href{https://example.com}{linked} parameter.}"
+))
+stopifnot(identical(rd_section(rd_a, "value"), "A \\strong{bold} value."))
+
+# @md + @family: the family seealso block is Rd markup already and must not
+# be re-escaped/re-rendered
+pkgdir <- make_test_pkg(a.R = c(
+  "#' A",
+  "#' @md",
+  "#' @family math",
+  "a <- function() {}",
+  "",
+  "#' B",
+  "#' @family math",
+  "b <- function() {}"
+))
+roxygenise(pkgdir)
+rd_a <- read_rd(pkgdir, "a")
+stopifnot(identical(rd_section(rd_a, "seealso"), "Other math: \\code{\\link{b}}"))
+
+# @md + topic autolink: [multiply()] becomes a real \link{} cross-reference
+pkgdir <- make_test_pkg(a.R = c(
+  "#' Add two numbers",
+  "#'",
+  "#' See [multiply()] for multiplication.",
+  "#' @md",
+  "a <- function(x, y) x + y"
+))
+roxygenise(pkgdir)
+rd_a <- read_rd(pkgdir, "a")
+stopifnot(identical(
+  rd_section(rd_a, "description"),
+  "See \\code{\\link[=multiply]{multiply()}} for multiplication."
+))
+
+# Config/tinyroxygen/markdown: TRUE in DESCRIPTION turns on Markdown for
+# every topic, no per-topic @md needed
+pkgdir <- make_test_pkg(
+  a.R = c(
+    "#' Add two numbers",
+    "#'",
+    "#' Adds `x` and `y`, returning **their sum**. See [multiply()] for multiplication.",
+    "a <- function(x, y) x + y"
+  ),
+  desc_extra = "Config/tinyroxygen/markdown: TRUE"
+)
+roxygenise(pkgdir)
+rd_a <- read_rd(pkgdir, "a")
+stopifnot(identical(
+  rd_section(rd_a, "description"),
+  "Adds \\code{x} and \\code{y}, returning \\strong{their sum}. See \\code{\\link[=multiply]{multiply()}} for multiplication."
+))
+
+cat("markdown test passed\n")

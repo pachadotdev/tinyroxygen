@@ -60,22 +60,4 @@ roxygenise(pkgdir)
 ns <- read_ns(pkgdir)
 stopifnot("exportClasses(a)" %in% ns)
 
-# @importFrom with several names writes one importFrom() directive per
-# name, rather than combining them into a single call. Combining them is
-# broken for non-syntactic names (e.g. `:=`, `%>%`): R's namespace loader
-# extracts import names via as.character() on the whole call, which
-# re-quotes non-syntactic symbols with backticks when there's more than
-# one element - unlike as.character() on a lone symbol, which strips them
-# - so a combined directive ends up looking up the literal string
-# "`:=`" instead of ":=" and fails to load. See roclet-namespace.R.
-pkgdir <- make_test_pkg(a.R = c(
-  "#' @importFrom data.table `:=` copy",
-  "a <- function() {}"
-))
-roxygenise(pkgdir)
-ns <- read_ns(pkgdir)
-stopifnot("importFrom(data.table,`:=`)" %in% ns)
-stopifnot("importFrom(data.table,copy)" %in% ns)
-stopifnot(!any(grepl("^importFrom\\(data\\.table,.*,.*\\)$", ns)))
-
 cat("namespace export test passed\n")

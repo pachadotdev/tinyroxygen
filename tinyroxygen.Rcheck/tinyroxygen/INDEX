@@ -1,0 +1,2 @@
+description_update      Update DESCRIPTION Imports and Suggests fields
+roxygenise              Generate documentation from roxygen comments

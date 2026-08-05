@@ -1,0 +1,97 @@
+
+R version 4.6.1 (2026-06-24) -- "Happy Hop"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tinyroxygen)
+> source("helper/pkg.R")
+> 
+> # basic @export
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @export",
++   "a <- function() {}"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("export(a)" %in% ns)
+> 
+> # @export <name> overrides the default (the object's own name)
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @export b",
++   "a <- function() {}"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("export(b)" %in% ns)
+> stopifnot(!("export(a)" %in% ns))
+> 
+> # @export a b generates multiple exports
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @export a b",
++   "a <- function() {}"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("export(a)" %in% ns)
+> stopifnot("export(b)" %in% ns)
+> 
+> # a blank #' line right after @export doesn't break the association
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @export",
++   "#'",
++   "a <- function() {}"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("export(a)" %in% ns)
+> 
+> # tinyroxygen does NOT special-case setClass()/setGeneric() the way
+> # roxygen2 does: @export on a bare setClass() call just does export(name),
+> # not exportClasses(name). Use the explicit @exportClass tag for that.
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @export",
++   "setClass(\"a\")"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("export(a)" %in% ns)
+> stopifnot(!any(grepl("exportClasses", ns)))
+> 
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @exportClass",
++   "setClass(\"a\")"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("exportClasses(a)" %in% ns)
+> 
+> cat("namespace export test passed\n")
+namespace export test passed
+> 
+> proc.time()
+   user  system elapsed 
+  0.330   0.033   0.348 

@@ -1,0 +1,61 @@
+
+R version 4.6.1 (2026-06-24) -- "Happy Hop"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tinyroxygen)
+> source("helper/pkg.R")
+> 
+> # @exportS3Method with no value: generic/class inferred from name.class
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @exportS3Method",
++   "mean.foo <- function(x) \"foo\""
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'mean.foo' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("S3method(mean, foo)" %in% ns)
+> 
+> # @exportS3Method generic class: explicit literal directive
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @exportS3Method print foo",
++   "some_function <- function(x) \"foo\""
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'some_function' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("S3method(print, foo)" %in% ns)
+> 
+> # @import / @importFrom
+> pkgdir <- make_test_pkg(a.R = c(
++   "#' @import stats",
++   "#' @importFrom utils head tail",
++   "a <- function() {}"
++ ))
+> roxygenise(pkgdir)
+Warning message:
+Topic 'a' has no title (first line of the block) 
+> ns <- read_ns(pkgdir)
+> stopifnot("import(stats)" %in% ns)
+> stopifnot("importFrom(utils,head,tail)" %in% ns)
+> 
+> cat("namespace S3method/import test passed\n")
+namespace S3method/import test passed
+> 
+> proc.time()
+   user  system elapsed 
+  0.230   0.037   0.252 

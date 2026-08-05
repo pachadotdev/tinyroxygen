@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+rm -f src/*.o src/*.so src/*.dll
+rm -f src/cmark/*.o

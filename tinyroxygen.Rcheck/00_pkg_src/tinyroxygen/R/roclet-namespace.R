@@ -81,20 +81,7 @@ namespace_roclet_write <- function(pkgdir, ns) {
   for (v in ns$imports) lines <- c(lines, sprintf("import(%s)", v))
   for (pkg in sort(names(ns$import_from))) {
     fns <- sort(ns$import_from[[pkg]])
-    # One name per importFrom() directive (matching roxygen2's own output),
-    # rather than combining every name for a package into a single call.
-    # R's namespace loader extracts each argument's name via as.character()
-    # on the *whole* call - and as.character() on a multi-element call/list
-    # re-quotes non-syntactic names with backticks (e.g. `:=`), unlike
-    # as.character() on a lone symbol, which strips them. A combined
-    # importFrom(pkg, .N, `:=`, copy) directive therefore ends up looking
-    # up the literal 4-character name "`:=`" instead of ":=", failing with
-    # "object '`:=`' is not exported by 'namespace:pkg'" for any
-    # non-syntactic import (`:=`, `%>%`, etc.). One-name-per-line sidesteps
-    # this entirely, since a lone symbol is never re-quoted.
-    for (fn in fns) {
-      lines <- c(lines, sprintf("importFrom(%s,%s)", pkg, fn))
-    }
+    lines <- c(lines, sprintf("importFrom(%s,%s)", pkg, paste(fns, collapse = ",")))
   }
 
   writeLines(lines, file.path(pkgdir, "NAMESPACE"))
