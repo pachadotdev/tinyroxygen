@@ -19,7 +19,7 @@ escape_rd_percent <- function(x) {
 escape_rd_examples <- function(x) {
   if (is.null(x)) return(x)
   x <- gsub("\\\\", "\\\\\\\\", x, fixed = TRUE)
-  gsub("%", "\\\\%", x, fixed = TRUE)
+  gsub("%", "\\%", x, fixed = TRUE)
 }
 
 rd_block <- function(tag, body) {
