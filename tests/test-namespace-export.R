@@ -3,6 +3,7 @@ source("helper/pkg.R")
 
 # basic @export
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Function A",
   "#' @export",
   "a <- function() {}"
 ))
@@ -12,6 +13,7 @@ stopifnot("export(a)" %in% ns)
 
 # @export <name> overrides the default (the object's own name)
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Function A",
   "#' @export b",
   "a <- function() {}"
 ))
@@ -22,6 +24,7 @@ stopifnot(!("export(a)" %in% ns))
 
 # @export a b generates multiple exports
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Function A",
   "#' @export a b",
   "a <- function() {}"
 ))
@@ -32,6 +35,7 @@ stopifnot("export(b)" %in% ns)
 
 # a blank #' line right after @export doesn't break the association
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Function A",
   "#' @export",
   "#'",
   "a <- function() {}"
@@ -40,10 +44,27 @@ roxygenise(pkgdir)
 ns <- read_ns(pkgdir)
 stopifnot("export(a)" %in% ns)
 
+# replacement-function names must be exported and aliased without
+# becoming invalid NAMESPACE/Rd code
+pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Var Label",
+  "#' @name varlabel",
+  "#' @rdname varlabel",
+  "#' @export \"varlabel<-\"",
+  "\"varlabel<-\" <- function(dat, value) { dat }"
+))
+roxygenise(pkgdir)
+ns <- read_ns(pkgdir)
+stopifnot("export(\"varlabel<-\")" %in% ns)
+rd <- read_rd(pkgdir, "varlabel")
+stopifnot(any(grepl("\\alias{varlabel<-}", rd, fixed = TRUE)))
+stopifnot(any(grepl('"varlabel<-"(dat, value)', rd, fixed = TRUE)))
+
 # tinyroxygen does NOT special-case setClass()/setGeneric() the way
 # roxygen2 does: @export on a bare setClass() call just does export(name),
 # not exportClasses(name). Use the explicit @exportClass tag for that.
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Letter A",
   "#' @export",
   "setClass(\"a\")"
 ))
@@ -53,6 +74,7 @@ stopifnot("export(a)" %in% ns)
 stopifnot(!any(grepl("exportClasses", ns)))
 
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Letter A",
   "#' @exportClass",
   "setClass(\"a\")"
 ))
@@ -69,6 +91,7 @@ stopifnot("exportClasses(a)" %in% ns)
 # - so a combined directive ends up looking up the literal string
 # "`:=`" instead of ":=" and fails to load. See roclet-namespace.R.
 pkgdir <- make_test_pkg(a.R = c(
+  "#' @title Function A",
   "#' @importFrom data.table `:=` copy",
   "a <- function() {}"
 ))

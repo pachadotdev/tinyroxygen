@@ -38,7 +38,13 @@ object_info <- function(call) {
   if (is.symbol(head_sym) && as.character(head_sym) %in% c("<-", "=", "<<-") && length(call) == 3) {
     lhs <- call[[2]]
     rhs <- call[[3]]
-    name <- if (is.symbol(lhs)) as.character(lhs) else deparse1(lhs)
+    name <- if (is.symbol(lhs)) {
+      as.character(lhs)
+    } else if (is.character(lhs) && length(lhs) == 1L) {
+      as.character(lhs)
+    } else {
+      deparse1(lhs)
+    }
 
     if (is.call(rhs) && is.symbol(rhs[[1]]) && identical(as.character(rhs[[1]]), "function")) {
       formals_pl <- rhs[[2]]
@@ -64,6 +70,15 @@ object_info <- function(call) {
     return(list(name = name, is_function = FALSE, usage = name, arg_names = character()))
   }
 
+  # setMethod("generic", "Class", fn): the first argument is the generic
+  # name. Using that as the auto-alias causes duplicate \alias{generic}
+  # entries across every Rd file that documents a method for the same
+  # generic. Return no_info to suppress auto-aliasing; the method-specific
+  # alias (e.g. "dbConnect,PqDriver-method") is provided via @aliases tags.
+  if (is.symbol(head_sym) && identical(as.character(head_sym), "setMethod")) {
+    return(no_info)
+  }
+
   # best-effort: setClass("Foo", ...), setGeneric("foo", ...), etc.
   if (is.symbol(head_sym) && length(call) >= 2 && is.character(call[[2]])) {
     return(list(name = call[[2]], is_function = FALSE, usage = NA_character_, arg_names = character()))
@@ -85,11 +100,22 @@ object_info <- function(call) {
 # works unchanged on either form.
 usage_width_limit <- 90
 
+format_r_name <- function(name) {
+  if (!is.character(name) || length(name) != 1L || !nzchar(name)) {
+    return(name)
+  }
+  if (grepl("^[A-Za-z_.][A-Za-z0-9_.]*$", name)) {
+    return(name)
+  }
+  sprintf('"%s"', name)
+}
+
 format_usage <- function(name, arg_strs) {
-  one_line <- paste0(name, "(", paste(arg_strs, collapse = ", "), ")")
+  r_name <- format_r_name(name)
+  one_line <- paste0(r_name, "(", paste(arg_strs, collapse = ", "), ")")
   if (length(arg_strs) == 0 || nchar(one_line) <= usage_width_limit) {
     return(one_line)
   }
-  paste0(name, "(\n  ", paste(arg_strs, collapse = ",\n  "), "\n)")
+  paste0(r_name, "(\n  ", paste(arg_strs, collapse = ",\n  "), "\n)")
 }
 
