@@ -1,6 +1,6 @@
 Package: tinyroxygen
 Title: A Tiny 'Roxygen'-Style Documentation Generator
-Version: 0.1
+Version: 0.2.0
 Authors@R: 
     person("Mauricio", "Vargas Sepulveda", , "m.vargas.sepulveda@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1017-7574"))

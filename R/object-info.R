@@ -11,14 +11,38 @@ deparse1 <- function(x) {
   paste(deparse(x, width.cutoff = 500), collapse = " ")
 }
 
+find_usemethod <- function(expr) {
+  if (!is.call(expr)) {
+    return(NA_character_)
+  }
+  if (identical(as.character(expr[[1]]), "UseMethod") &&
+      length(expr) >= 2L && is.character(expr[[2]]) &&
+      length(expr[[2]]) == 1L && nzchar(expr[[2]])) {
+    return(expr[[2]])
+  }
+  for (part in as.list(expr)[-1]) {
+    found <- find_usemethod(part)
+    if (!is.na(found)) {
+      return(found)
+    }
+  }
+  NA_character_
+}
+
 object_info <- function(call) {
-  no_info <- list(name = NA_character_, is_function = FALSE, usage = NA_character_, arg_names = character())
+  no_info <- list(
+    name = NA_character_,
+    is_function = FALSE,
+    usage = NA_character_,
+    arg_names = character(),
+    s3_generic = NA_character_
+  )
 
   # "_PACKAGE" is a bare string literal, not a call: it's Roxygen's
   # sentinel for package-level documentation. Flag it with a dedicated
   # name so collect_blocks() can resolve it to "<pkgname>-package".
   if (is.character(call) && length(call) == 1 && identical(call, "_PACKAGE")) {
-    return(list(name = "_PACKAGE", is_function = FALSE, usage = NA_character_, arg_names = character()))
+    return(list(name = "_PACKAGE", is_function = FALSE, usage = NA_character_, arg_names = character(), s3_generic = NA_character_))
   }
 
   # Any other bare string literal is Roxygen's convention for documenting
@@ -26,7 +50,7 @@ object_info <- function(call) {
   # dataset loaded from data/, documented with a trailing `"objname"`).
   # The string itself is the object's name.
   if (is.character(call) && length(call) == 1) {
-    return(list(name = call, is_function = FALSE, usage = NA_character_, arg_names = character()))
+    return(list(name = call, is_function = FALSE, usage = NA_character_, arg_names = character(), s3_generic = NA_character_))
   }
 
   if (!is.call(call)) {
@@ -64,10 +88,16 @@ object_info <- function(call) {
         }
       }, character(1))
       usage <- format_usage(name, arg_strs)
-      return(list(name = name, is_function = TRUE, usage = usage, arg_names = arg_names[nzchar(arg_names)]))
+      return(list(
+        name = name,
+        is_function = TRUE,
+        usage = usage,
+        arg_names = arg_names[nzchar(arg_names)],
+        s3_generic = find_usemethod(rhs[[3]])
+      ))
     }
 
-    return(list(name = name, is_function = FALSE, usage = name, arg_names = character()))
+    return(list(name = name, is_function = FALSE, usage = name, arg_names = character(), s3_generic = NA_character_))
   }
 
   # setMethod("generic", "Class", fn): the first argument is the generic
@@ -81,7 +111,7 @@ object_info <- function(call) {
 
   # best-effort: setClass("Foo", ...), setGeneric("foo", ...), etc.
   if (is.symbol(head_sym) && length(call) >= 2 && is.character(call[[2]])) {
-    return(list(name = call[[2]], is_function = FALSE, usage = NA_character_, arg_names = character()))
+    return(list(name = call[[2]], is_function = FALSE, usage = NA_character_, arg_names = character(), s3_generic = NA_character_))
   }
 
   no_info
@@ -118,4 +148,3 @@ format_usage <- function(name, arg_strs) {
   }
   paste0(r_name, "(\n  ", paste(arg_strs, collapse = ",\n  "), "\n)")
 }
-

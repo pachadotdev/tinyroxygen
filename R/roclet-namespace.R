@@ -17,7 +17,12 @@ namespace_roclet_build <- function(blocks) {
       val <- str_trim(tag_value(b$tags, "export"))
       nms <- if (!is.null(val) && nzchar(val)) strsplit(val, "[ \t]+")[[1]] else b$obj_name
       nms <- nms[!is.na(nms) & nzchar(nms)]
-      exports <- c(exports, nms)
+      if (isTRUE(b$is_s3_method) && !nzchar(val)) {
+        parts <- s3_method_parts("", b$obj_name)
+        s3methods <- c(s3methods, sprintf("S3method(%s, %s)", parts$generic, parts$class))
+      } else {
+        exports <- c(exports, nms)
+      }
     }
 
     if (tag_present(b$tags, "exportS3Method")) {

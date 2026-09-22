@@ -32,12 +32,33 @@ collect_blocks <- function(pkgdir) {
         is_function = info$is_function,
         usage = info$usage,
         arg_names = info$arg_names,
+        s3_generic = info$s3_generic,
         intro = parsed$intro,
         tags = parsed$tags,
         file = raw_block$file,
         line = raw_block$line
       )
     }
+  }
+
+  generic_names <- unique(vapply(
+    blocks,
+    function(b) if (length(b$s3_generic) == 0L || is.na(b$s3_generic)) "" else b$s3_generic,
+    character(1)
+  ))
+  generic_names <- generic_names[nzchar(generic_names)]
+  for (i in seq_along(blocks)) {
+    b <- blocks[[i]]
+    bare_export <- tag_present(b$tags, "export") &&
+      !nzchar(str_trim(tag_value(b$tags, "export")))
+    inferred <- FALSE
+    if (bare_export && length(generic_names) > 0L &&
+        !is.null(b$obj_name) && !is.na(b$obj_name)) {
+      match <- regexec("^([^\\.]+)\\.(.+)$", b$obj_name)
+      parts <- regmatches(b$obj_name, match)[[1]]
+      inferred <- length(parts) == 3L && parts[2] %in% generic_names
+    }
+    blocks[[i]]$is_s3_method <- inferred
   }
   blocks
 }
@@ -51,6 +72,11 @@ group_blocks_by_topic <- function(blocks) {
   order <- character()
 
   for (b in blocks) {
+    has_s3_method_docs <- nzchar(str_trim(paste(b$intro, collapse = ""))) ||
+      any(vapply(b$tags, function(t) !identical(t$tag, "export"), logical(1)))
+    if (isTRUE(b$is_s3_method) && !has_s3_method_docs) {
+      next
+    }
     key <- tag_value(b$tags, "rdname")
     if (is.null(key)) key <- b$name
     if (is.null(key) || is.na(key) || !nzchar(key)) {
