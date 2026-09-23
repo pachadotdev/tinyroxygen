@@ -45,6 +45,34 @@ stopifnot(!("export(my_func.default)" %in% ns))
 stopifnot(file.exists(file.path(pkgdir, "man", "my_func.Rd")))
 stopifnot(!file.exists(file.path(pkgdir, "man", "my_func.default.Rd")))
 
+# A bare @export on a method for an available external generic is inferred
+# as an S3 method and does not create a separate Rd topic.
+pkgdir <- make_test_pkg(a.R = c(
+  "#' @export",
+  "print.abcd <- function(x, ...) x"
+))
+roxygenise(pkgdir)
+ns <- read_ns(pkgdir)
+stopifnot("S3method(print, abcd)" %in% ns)
+stopifnot(!("export(print.abcd)" %in% ns))
+stopifnot(!file.exists(file.path(pkgdir, "man", "print.abcd.Rd")))
+
+# A method grouped with its generic keeps \method{}{} usage markup.
+pkgdir <- make_test_pkg(a.R = c(
+  "#' A generic function",
+  "#'",
+  "#' @rdname my_func",
+  "#' @export",
+  "my_func <- function(x) UseMethod(\"my_func\")",
+  "",
+  "#' @rdname my_func",
+  "#' @export",
+  "my_func.default <- function(x) x"
+))
+roxygenise(pkgdir)
+rd <- read_rd(pkgdir, "my_func")
+stopifnot(any(grepl("^\\\\method\\{my_func\\}\\{default\\}\\(x\\)$", rd)))
+
 # @import / @importFrom
 pkgdir <- make_test_pkg(a.R = c(
   "#' @title Function A",

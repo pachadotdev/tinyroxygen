@@ -11,7 +11,10 @@ deparse1 <- function(x) {
   paste(deparse(x, width.cutoff = 500), collapse = " ")
 }
 
-find_usemethod <- function(expr) {
+find_usemethod <- function(expr = NULL) {
+  if (missing(expr) || is_missing_arg(expr)) {
+    return(NA_character_)
+  }
   if (!is.call(expr)) {
     return(NA_character_)
   }
@@ -20,10 +23,13 @@ find_usemethod <- function(expr) {
       length(expr[[2]]) == 1L && nzchar(expr[[2]])) {
     return(expr[[2]])
   }
-  for (part in as.list(expr)[-1]) {
-    found <- find_usemethod(part)
-    if (!is.na(found)) {
-      return(found)
+  if (length(expr) > 1L) {
+    for (i in 2:length(expr)) {
+      part <- expr[[i]]
+      found <- find_usemethod(part)
+      if (!is.na(found)) {
+        return(found)
+      }
     }
   }
   NA_character_

@@ -31,21 +31,21 @@ rd_block <- function(tag, body) {
 
 # S3 methods must be shown in \usage{} with \method{generic}{class}(...)
 # markup instead of their full dotted name (CRAN's Rd checks reject the
-# full name). Only applies to blocks tagged @exportS3Method; other
-# functions keep their plain "name(args)" usage as-is.
+# full name). This applies to explicit @exportS3Method tags and to bare
+# @export blocks inferred as S3 methods.
 s3_method_usage <- function(b) {
-  if (!tag_present(b$tags, "exportS3Method")) {
+  if (!tag_present(b$tags, "exportS3Method") && !isTRUE(b$is_s3_method)) {
     return(b$usage)
   }
-  parts <- s3_method_parts(tag_value(b$tags, "exportS3Method"), b$name)
+  parts <- s3_method_parts(tag_value(b$tags, "exportS3Method"), b$obj_name)
   if (is.na(parts$class) || !nzchar(parts$class)) {
     return(b$usage)
   }
-  prefix <- paste0(b$name, "(")
+  prefix <- paste0(b$obj_name, "(")
   if (!startsWith(b$usage, prefix)) {
     return(b$usage)
   }
-  paste0(sprintf("\\method{%s}{%s}", parts$generic, parts$class), substring(b$usage, nchar(b$name) + 1))
+  paste0(sprintf("\\method{%s}{%s}", parts$generic, parts$class), substring(b$usage, nchar(b$obj_name) + 1))
 }
 
 # Build the \description / \details from a block's intro text (paragraphs
