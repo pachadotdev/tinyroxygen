@@ -19,7 +19,7 @@ namespace_roclet_build <- function(blocks) {
       nms <- nms[!is.na(nms) & nzchar(nms)]
       if (isTRUE(b$is_s3_method) && !nzchar(val)) {
         parts <- s3_method_parts("", b$obj_name)
-        s3methods <- c(s3methods, sprintf("S3method(%s, %s)", parts$generic, parts$class))
+        s3methods <- c(s3methods, sprintf("S3method(%s, %s)", format_r_name(parts$generic), parts$class))
       } else {
         exports <- c(exports, nms)
       }
@@ -30,7 +30,7 @@ namespace_roclet_build <- function(blocks) {
       generic <- parts$generic
       class <- parts$class
       if (nzchar(generic) && !is.na(class) && nzchar(class)) {
-        s3methods <- c(s3methods, sprintf("S3method(%s, %s)", generic, class))
+        s3methods <- c(s3methods, sprintf("S3method(%s, %s)", format_r_name(generic), class))
       }
     }
 

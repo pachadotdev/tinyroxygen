@@ -68,17 +68,22 @@ pkgdir <- make_test_pkg(a.R = c(
   "length.abcd <- function(x) 1L",
   "",
   "#' @export",
-  "Math.abcd <- function(x) x"
+  "Math.abcd <- function(x) x",
+  "",
+  "#' @export",
+  "`[.abcd` <- function(x) x"
 ))
 roxygenise(pkgdir)
 ns <- read_ns(pkgdir)
 stopifnot("S3method(c, abcd)" %in% ns)
 stopifnot("S3method(length, abcd)" %in% ns)
 stopifnot("S3method(Math, abcd)" %in% ns)
+stopifnot('S3method("[", abcd)' %in% ns)
 stopifnot(!any(grepl("^export\\((c|length|Math)\\.abcd\\)$", ns)))
 stopifnot(!file.exists(file.path(pkgdir, "man", "c.abcd.Rd")))
 stopifnot(!file.exists(file.path(pkgdir, "man", "length.abcd.Rd")))
 stopifnot(!file.exists(file.path(pkgdir, "man", "Math.abcd.Rd")))
+stopifnot(!file.exists(file.path(pkgdir, "man", "[.abcd.Rd")))
 
 # A method grouped with its generic keeps \method{}{} usage markup.
 pkgdir <- make_test_pkg(a.R = c(
